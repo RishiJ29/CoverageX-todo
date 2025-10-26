@@ -1,0 +1,30 @@
+<div class="task-list-container">
+  <!-- Header -->
+  <div class="task-list-header">
+    <h2>Tasks</h2>
+  </div>
+
+  <!-- Task Grid -->
+  <div class="task-list">
+    <app-task-card
+      *ngFor="let task of paginatedTasks()"
+      [task]="task"
+      (toggleComplete)="toggleComplete($event)">
+    </app-task-card>
+  </div>
+
+  <!-- Pagination -->
+<div class="pagination">
+  <button (click)="prevPage()" [disabled]="currentPage === 1">◀ Prev</button>
+  <span>Page {{currentPage}} / {{totalPages()}}</span>
+  <button (click)="nextPage()" [disabled]="currentPage === totalPages()">Next ▶</button>
+</div>
+
+
+  <!-- Task Modal -->
+  <app-task-modal
+    *ngIf="showModal()"
+    (save)="saveTask($event)"
+    (cancel)="closeModal()">
+  </app-task-modal>
+</div>

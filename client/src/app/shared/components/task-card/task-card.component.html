@@ -1,0 +1,18 @@
+<div class="task-card" [class.completed]="task.completed">
+  <div class="task-header">
+    <h3>{{ task.title }}</h3>
+  </div>
+
+  <div class="task-body">
+    <p *ngIf="task.description" class="task-desc">{{ task.description }}</p>
+    <p *ngIf="task.dueDate" class="task-due">Due: {{ task.dueDate }} {{ task.dueTime || '' }}</p>
+  </div>
+
+  <div class="task-footer">
+    <button 
+      (click)="toggleComplete.emit(task)" 
+      [class.completed]="task.completed">
+      {{ task.completed ? 'Completed' : 'Mark Complete' }}
+    </button>
+  </div>
+</div>

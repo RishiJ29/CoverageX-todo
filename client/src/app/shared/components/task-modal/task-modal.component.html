@@ -1,0 +1,52 @@
+<div class="modal-backdrop">
+  <div class="modal">
+    <h2>{{ task ? 'Edit Task' : 'New Task' }}</h2>
+    <form [formGroup]="form" (ngSubmit)="onSave()">
+      
+      <div class="form-group">
+        <label for="title">Title <span class="required">*</span></label>
+        <input id="title" formControlName="title" />
+        <div *ngIf="isInvalidAndTouched('title')" class="validation-error">
+          <span *ngIf="form.get('title')?.errors?.['required']" class="validation-error">Task title is required.</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" formControlName="description"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="dueDate">Due Date</label>
+        <input type="date" id="dueDate" formControlName="dueDate" />
+        <div *ngIf="isInvalidAndTouched('dueDate')" class="validation-error">
+          <span *ngIf="form.get('dueDate')?.errors?.['pastDate']" class="validation-error">Due date cannot be in the past.</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="dueTime">Due Time</label>
+        <input type="time" id="dueTime" formControlName="dueTime" />
+        <div *ngIf="form.errors?.['timeRequired'] && (form.get('dueDate')?.dirty || form.get('dueTime')?.dirty)" class="validation-error">
+          Time is required when a Due Date is selected.
+        </div>
+      </div>
+
+      <div class="form-group checkbox">
+        <label>
+          <input type="checkbox" formControlName="completed" /> Completed
+        </label>
+      </div>
+
+      <div class="modal-actions">
+        <button 
+          type="submit" 
+          [disabled]="form.invalid"
+        >
+          {{ task ? 'Update' : 'Create' }}
+        </button>
+        <button type="button" (click)="onCancel()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

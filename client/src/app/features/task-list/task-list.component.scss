@@ -1,0 +1,217 @@
+.task-list-container {
+  display: flex;
+  flex-direction: column;
+  height: 85%;
+  padding: 24px;
+  color: #333;
+
+  /* 🌞 Light frosted glass */
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  border: 1px solid rgba(200, 200, 200, 0.4);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Header */
+.task-list-header {
+  justify-content: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(200, 200, 200, 0.4);
+  padding-bottom: 10px;
+
+  h2 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 24px;
+    color: #222;
+    letter-spacing: 0.5px;
+    text-align: center;
+  }
+}
+
+/* Task Grid */
+.task-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 18px;
+  overflow-y: auto;
+  padding-right: 5px;
+  scrollbar-width: thin;
+
+  /* Scrollbar styling */
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(100, 150, 255, 0.4);
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(100, 150, 255, 0.6);
+  }
+}
+
+/* Task Cards */
+app-task-card {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  padding: 12px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 12px rgba(100, 150, 255, 0.2);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 18px rgba(100, 150, 255, 0.35);
+  }
+
+  animation: fadeIn 0.35s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+
+  button {
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.25s ease;
+
+    &:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 123, 255, 0.4);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  span {
+    font-weight: 500;
+    color: #333;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .task-list {
+    grid-template-columns: 1fr;
+  }
+
+  .task-list-container {
+    padding: 16px;
+  }
+}
+
+.pagination {
+  position: sticky;      // or fixed if outside container
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.7); /* light glass effect */
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border-top: 1px solid rgba(200, 200, 200, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  z-index: 10;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
+
+  button {
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 6px 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+
+    &:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  span {
+    font-weight: 500;
+    color: #333;
+  }
+}
+
+.pagination {
+  position: fixed;         /* Fix to viewport */
+  bottom: 0;               /* Stick to bottom */
+  left: 0;
+  width: 100%;             /* Full width */
+  padding: 12px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.8);  /* Light glass */
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border-top: 1px solid rgba(200, 200, 200, 0.3);
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
+  z-index: 999;            /* Ensure it’s on top */
+
+  button {
+    background: #080a0c;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 6px 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+
+    &:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  span {
+    font-weight: 500;
+    color: #333;
+  }
+}

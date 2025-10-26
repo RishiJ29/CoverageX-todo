@@ -1,0 +1,67 @@
+<div class="left-panel">
+  <!-- Header section (fixed) -->
+  <div class="top-section">
+    <button class="add-btn" (click)="openAddModal()">➕ Add Task</button>
+    <input
+      type="text"
+      placeholder="Search tasks..."
+      (input)="onSearchInput($event)"
+    />
+  </div>
+
+  <!-- Scrollable task date list -->
+  <div class="scroll-section">
+    <!-- Task Dates -->
+    <ul class="date-list" *ngIf="taskDates.length > 0">
+      <li
+        *ngFor="let date of taskDates"
+        (click)="selectDate(date)"
+        [class.active]="selectedDate === date"
+      >
+        {{ date }}
+      </li>
+    </ul>
+
+    <!-- Past -->
+    <div class="date-section" *ngIf="groupedDates.past?.length">
+      <h4>Past</h4>
+      <div class="date-list">
+        <button
+          *ngFor="let date of groupedDates.past"
+          (click)="selectDate(date)"
+          [class.selected]="date === selectedDate"
+          class="date-btn past"
+        >
+          {{ date }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Today -->
+    <div class="date-section" *ngIf="groupedDates.today">
+      <h4>Today</h4>
+      <button
+        (click)="selectDate(groupedDates.today!)"
+        [class.selected]="groupedDates.today === selectedDate"
+        class="date-btn today"
+      >
+        {{ groupedDates.today }}
+      </button>
+    </div>
+
+    <!-- Upcoming -->
+    <div class="date-section" *ngIf="groupedDates.future?.length">
+      <h4>Upcoming</h4>
+      <div class="date-list">
+        <button
+          *ngFor="let date of groupedDates.future"
+          (click)="selectDate(date)"
+          [class.selected]="date === selectedDate"
+          class="date-btn future"
+        >
+          {{ date }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
