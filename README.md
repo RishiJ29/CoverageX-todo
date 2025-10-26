@@ -22,9 +22,6 @@ todo-app/
 ├── docker-compose.yml # Defines and links all 3 services
 └── README.md
 
-yaml
-Copy code
-
 ---
 
 ## Prerequisites
@@ -42,15 +39,14 @@ To run this application, you must have the following installed:
 
 Navigate to your desired directory and clone the project:
 
-```bash
+
 git clone <your-repository-url>
 cd todo-app
 2. Build and Run the Stack
 Run the following command from the project root (todo-app/).
 The --build flag ensures all images are created, and -d runs the containers in detached mode.
 
-bash
-Copy code
+
 docker compose up --build -d
 3. Access the Application
 Once the containers are up (this may take a minute for the initial builds):
